@@ -4,5 +4,5 @@ import { startDatabase } from "./database";
 
 app.listen(3000, async () => {
   await startDatabase();
-  console.log(`Server running on ${process.env.HOST} ${process.env.PORT}`);
+  console.log(`Server running on PORT ${process.env.PORT}`);
 });
