@@ -5,28 +5,28 @@ import listCategoryService from "../services/categories/listCategoryService";
 import updateCategoryService from "../services/categories/updateCategoryService";
 
 const createCategoryController = async (req, res) => {
-  const [status, data] = await createCategoryService(req);
-  return res.status(status).data(data);
+  const [status, data] = await createCategoryService(req.body);
+  return res.status(status).json(data);
 };
 
 const listCategoriesController = async (req, res) => {
   const [status, data] = await listCategoriesService(req);
-  return res.status(status).data(data);
+  return res.status(status).json(data);
 };
 
 const listCategoryController = async (req, res) => {
   const [status, data] = await listCategoryService(req);
-  return res.status(status).data(data);
+  return res.status(status).json(data);
 };
 
 const updateCategoryController = async (req, res) => {
   const [status, data] = await updateCategoryService(req);
-  return res.status(status).data(data);
+  return res.status(status).json(data);
 };
 
 const deleteCategoryController = async (req, res) => {
   const [status, data] = await deleteCategoryService(req);
-  return res.status(status).data(data);
+  return res.status(status).json(data);
 };
 
 export {
