@@ -15,7 +15,7 @@ const listCategoriesController = async (req, res) => {
 };
 
 const listCategoryController = async (req, res) => {
-  const [status, data] = await listCategoryService(req);
+  const [status, data] = await listCategoryService(req.params.id);
   return res.status(status).json(data);
 };
 
