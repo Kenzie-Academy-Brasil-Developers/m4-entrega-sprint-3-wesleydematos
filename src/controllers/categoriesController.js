@@ -10,7 +10,7 @@ const createCategoryController = async (req, res) => {
 };
 
 const listCategoriesController = async (req, res) => {
-  const [status, data] = await listCategoriesService(req);
+  const [status, data] = await listCategoriesService();
   return res.status(status).json(data);
 };
 
