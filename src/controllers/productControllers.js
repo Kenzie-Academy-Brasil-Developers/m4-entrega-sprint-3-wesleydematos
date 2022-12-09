@@ -6,7 +6,7 @@ import listProductsService from "../services/products/listProductsService";
 import updateProductService from "../services/products/updateProductService";
 
 const createProductController = async (req, res) => {
-  const [status, data] = await createProductService(req);
+  const [status, data] = await createProductService(req.body);
   return res.status(status).json(data);
 };
 
