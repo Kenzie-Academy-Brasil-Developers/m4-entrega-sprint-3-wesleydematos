@@ -1,11 +1,14 @@
 import database from "../../database";
-import { createCategorySerializer } from "../../serializers/categoriesSerializers";
+import { createAndUpdateCategorySerializer } from "../../serializers/categoriesSerializers";
 
 const createCategoryService = async (categoryData) => {
   try {
-    const validated = await createCategorySerializer.validate(categoryData, {
-      stripUnknown: true,
-    });
+    const validated = await createAndUpdateCategorySerializer.validate(
+      categoryData,
+      {
+        stripUnknown: true,
+      }
+    );
 
     const queryResponse = await database.query(
       `INSERT INTO

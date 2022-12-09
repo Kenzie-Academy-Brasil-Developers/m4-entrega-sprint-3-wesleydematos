@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
-const createCategorySerializer = yup.object().shape({
+const createAndUpdateCategorySerializer = yup.object().shape({
   name: yup.string().max(200).required(),
 });
 
-export { createCategorySerializer };
+export { createAndUpdateCategorySerializer };
