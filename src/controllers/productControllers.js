@@ -11,7 +11,7 @@ const createProductController = async (req, res) => {
 };
 
 const listProductsController = async (req, res) => {
-  const [status, data] = await listProductsService(req);
+  const [status, data] = await listProductsService();
   return res.status(status).json(data);
 };
 
