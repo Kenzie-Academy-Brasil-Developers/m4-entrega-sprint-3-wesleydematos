@@ -7,10 +7,15 @@ import {
   listProductsController,
   updateProductController,
 } from "../controllers/productControllers";
+import ensureCategoryExistsMiddleware from "../middlewares/ensureCategoryExists";
 
 const productsRoutes = Router();
 
-productsRoutes.post("", createProductController);
+productsRoutes.post(
+  "",
+  ensureCategoryExistsMiddleware,
+  createProductController
+);
 productsRoutes.get("", listProductsController);
 productsRoutes.get("/:id", listProductController);
 productsRoutes.patch("/:id", updateProductController);
