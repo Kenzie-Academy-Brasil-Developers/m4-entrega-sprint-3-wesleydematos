@@ -1,27 +1,22 @@
 import database from "../database";
+import { AppError } from "../errors";
 
 const ensureCategoryExistsMiddleware = async (req, res, next) => {
   if (!req.body.category_id) {
     return next();
   }
 
-  try {
-    const queryResponse = await database.query(
-      `
+  const queryResponse = await database.query(
+    `
       SELECT * FROM categories WHERE categories.id = ($1);
       `,
-      [req.body.category_id]
-    );
+    [req.body.category_id]
+  );
 
-    return queryResponse.rowCount
-      ? next()
-      : res
-          .status(400)
-          .json({ message: "category with this id doesn't exists" });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({ message: error });
+  if (!queryResponse.rowCount) {
+    throw new AppError("category with this id doesn't exists", 404);
   }
+  return next();
 };
 
 export default ensureCategoryExistsMiddleware;
