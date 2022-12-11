@@ -1,6 +1,6 @@
 import createProductService from "../services/products/createProductService";
 import deleteProductService from "../services/products/deleteProductService";
-import listProductByCategoryProductService from "../services/products/listProductByCategoryProductService";
+import listProductsByCategoryIdService from "../services/products/listProductByCategoryIdService";
 import listProductService from "../services/products/listProductService";
 import listProductsService from "../services/products/listProductsService";
 import updateProductService from "../services/products/updateProductService";
@@ -30,8 +30,10 @@ const deleteProductController = async (req, res) => {
   return res.status(status).json(data);
 };
 
-const listProductByCategoryController = async (req, res) => {
-  const [status, data] = await listProductByCategoryProductService(req);
+const listProductByCategoryIdController = async (req, res) => {
+  const [status, data] = await listProductsByCategoryIdService(
+    req.params.categoryId
+  );
   return res.status(status).json(data);
 };
 
@@ -41,5 +43,5 @@ export {
   listProductsController,
   updateProductController,
   deleteProductController,
-  listProductByCategoryController,
+  listProductByCategoryIdController,
 };
