@@ -7,6 +7,7 @@ const createCategoryService = async (categoryData) => {
       categoryData,
       {
         stripUnknown: true,
+        abortEarly: false,
       }
     );
 
