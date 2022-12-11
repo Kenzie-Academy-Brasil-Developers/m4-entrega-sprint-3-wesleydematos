@@ -7,6 +7,7 @@ const createProductService = async (productData) => {
       productData,
       {
         stripUnknown: true,
+        abortEarly: true,
       }
     );
 
@@ -22,14 +23,14 @@ const createProductService = async (productData) => {
     queryBody = queryBody.slice(0, -2) + ") VALUES(";
 
     values.forEach((value, index) => {
-      index == 0 ? (queryBody += `'${value}', `) : (queryBody += `${value}, `);
+      keys[index] == "name"
+        ? (queryBody += `'${value}', `)
+        : (queryBody += `${value}, `);
     });
 
     queryBody = queryBody.slice(0, -2) + ") RETURNING id, name;";
 
     const queryResponse = await database.query(queryBody);
-    console.log(queryBody);
-    console.log(queryResponse.rows[0]);
 
     return [201, queryResponse.rows[0]];
   } catch (error) {
