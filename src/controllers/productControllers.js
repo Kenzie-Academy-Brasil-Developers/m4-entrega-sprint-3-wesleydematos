@@ -26,7 +26,7 @@ const updateProductController = async (req, res) => {
 };
 
 const deleteProductController = async (req, res) => {
-  const [status, data] = await deleteProductService(req);
+  const [status, data] = await deleteProductService(req.params.id);
   return res.status(status).json(data);
 };
 

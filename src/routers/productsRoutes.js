@@ -24,7 +24,11 @@ productsRoutes.patch(
   ensureProductsExistsMiddleware,
   updateProductController
 );
-productsRoutes.delete("/:id", deleteProductController);
+productsRoutes.delete(
+  "/:id",
+  ensureProductsExistsMiddleware,
+  deleteProductController
+);
 productsRoutes.get("/category/:categoryId", listProductByCategoryIdController);
 
 export default productsRoutes;
