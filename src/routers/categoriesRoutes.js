@@ -7,10 +7,15 @@ import {
   updateCategoryController,
 } from "../controllers/categoriesController";
 import ensureCategoryIdExistsMiddleware from "../middlewares/ensureCategoryIdExists";
+import ensureCategoryNameIsUniqueMiddleware from "../middlewares/ensureCategoryNameIsUnique";
 
 const categoriesRoutes = Router();
 
-categoriesRoutes.post("", createCategoryController);
+categoriesRoutes.post(
+  "",
+  ensureCategoryNameIsUniqueMiddleware,
+  createCategoryController
+);
 categoriesRoutes.get("", listCategoriesController);
 categoriesRoutes.get("/:id", listCategoryController);
 categoriesRoutes.patch("/:id", updateCategoryController);

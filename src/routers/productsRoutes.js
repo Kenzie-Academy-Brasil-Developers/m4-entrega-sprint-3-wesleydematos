@@ -9,11 +9,13 @@ import {
 } from "../controllers/productControllers";
 import ensureCategoryExistsMiddleware from "../middlewares/ensureCategoryExists";
 import ensureProductsExistsMiddleware from "../middlewares/ensureProductsExists";
+import ensureSendNameAndPriceMiddleware from "../middlewares/ensureSendNameProduct";
 
 const productsRoutes = Router();
 
 productsRoutes.post(
   "",
+  ensureSendNameAndPriceMiddleware,
   ensureCategoryExistsMiddleware,
   createProductController
 );
