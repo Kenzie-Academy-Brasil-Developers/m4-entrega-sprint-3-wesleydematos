@@ -10,6 +10,7 @@ const ensureSendNameAndPriceMiddleware = (req, res, next) => {
   if (!price) {
     throw new AppError("Price is required!");
   }
+
   return next();
 };
 
