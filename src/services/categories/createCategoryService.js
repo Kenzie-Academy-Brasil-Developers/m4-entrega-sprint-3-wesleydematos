@@ -1,5 +1,4 @@
 import database from "../../database";
-import { AppError } from "../../errors";
 import { createAndUpdateCategorySerializer } from "../../serializers/categoriesSerializers";
 
 const createCategoryService = async (categoryData) => {
