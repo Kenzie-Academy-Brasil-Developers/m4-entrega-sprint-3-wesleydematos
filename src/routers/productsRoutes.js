@@ -7,8 +7,7 @@ import {
   listProductsController,
   updateProductController,
 } from "../controllers/productControllers";
-import ensureCategoryExistsMiddleware from "../middlewares/ensureCategoryExists";
-import ensureProductsExistsMiddleware from "../middlewares/ensureProductsExists";
+import ensureProductExistsMiddleware from "../middlewares/ensureProductExists";
 import ensureSendNameAndPriceMiddleware from "../middlewares/ensureSendNameProduct";
 
 const productsRoutes = Router();
@@ -16,19 +15,22 @@ const productsRoutes = Router();
 productsRoutes.post(
   "",
   ensureSendNameAndPriceMiddleware,
-  ensureCategoryExistsMiddleware,
   createProductController
 );
 productsRoutes.get("", listProductsController);
-productsRoutes.get("/:id", listProductController);
+productsRoutes.get(
+  "/:id",
+  ensureProductExistsMiddleware,
+  listProductController
+);
 productsRoutes.patch(
   "/:id",
-  ensureProductsExistsMiddleware,
+  ensureProductExistsMiddleware,
   updateProductController
 );
 productsRoutes.delete(
   "/:id",
-  ensureProductsExistsMiddleware,
+  ensureProductExistsMiddleware,
   deleteProductController
 );
 productsRoutes.get("/category/:categoryId", listProductByCategoryIdController);

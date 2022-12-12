@@ -6,7 +6,7 @@ import {
   listCategoryController,
   updateCategoryController,
 } from "../controllers/categoriesController";
-import ensureCategoryIdExistsMiddleware from "../middlewares/ensureCategoryIdExists";
+import ensureCategoryExistsMiddleWare from "../middlewares/ensureCategoryExists";
 import ensureCategoryNameIsUniqueMiddleware from "../middlewares/ensureCategoryNameIsUnique";
 
 const categoriesRoutes = Router();
@@ -17,11 +17,19 @@ categoriesRoutes.post(
   createCategoryController
 );
 categoriesRoutes.get("", listCategoriesController);
-categoriesRoutes.get("/:id", listCategoryController);
-categoriesRoutes.patch("/:id", updateCategoryController);
+categoriesRoutes.get(
+  "/:id",
+  ensureCategoryExistsMiddleWare,
+  listCategoryController
+);
+categoriesRoutes.patch(
+  "/:id",
+  ensureCategoryExistsMiddleWare,
+  updateCategoryController
+);
 categoriesRoutes.delete(
   "/:id",
-  ensureCategoryIdExistsMiddleware,
+  ensureCategoryExistsMiddleWare,
   deleteCategoryController
 );
 
